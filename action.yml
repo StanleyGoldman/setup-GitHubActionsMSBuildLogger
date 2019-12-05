@@ -1,0 +1,7 @@
+name: 'Setup GitHubActionsMSBuildLogger'
+description: 'Set up GitHubActionsMSBuildLogger to create Annotatios in GitHub from `msbuild` or `dotnet build`.'
+author: 'Stanley Goldman'
+inputs: 
+runs:
+  using: 'node12'
+  main: 'lib/setup-GitHubActionsMSBuildLogger.js'

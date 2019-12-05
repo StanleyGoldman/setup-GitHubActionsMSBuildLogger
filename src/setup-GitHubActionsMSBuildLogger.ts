@@ -3,7 +3,8 @@ import * as installer from "./installer";
 
 async function run() {
   try {
-    installer.Install();
+    var path = installer.Install();
+    console.log(`::warning::Extracted GitHubActionsMSBuildLogger to ${path}`);
   } catch (error) {
     core.setFailed(error.message);
   }

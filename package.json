@@ -1,9 +1,9 @@
 {
-  "name": "setup-dotnet",
+  "name": "setup-GitHubActionsMSBuildLogger",
   "version": "1.0.0",
   "private": true,
-  "description": "setup dotnet action",
-  "main": "lib/setup-dotnet.js",
+  "description": "setup GitHubActionsMSBuildLogger action",
+  "main": "lib/setup-GitHubActionsMSBuildLogger.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write **/*.ts",
@@ -12,12 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/setup-dotnet.git"
+    "url": "git+https://github.com/StanleyGoldman/setup-GitHubActionsMSBuildLogger.git"
   },
   "keywords": [
     "actions",
     "dotnet",
-    "setup"
+    "setup",
+    "GitHubActionsMSBuildLogger"
   ],
   "author": "GitHub",
   "license": "MIT",

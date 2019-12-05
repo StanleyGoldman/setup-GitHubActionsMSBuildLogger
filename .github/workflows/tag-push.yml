@@ -1,0 +1,24 @@
+name: Tag
+on:
+  push:
+    tags:
+      - '*'  
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - name: Get the tag name
+      if: (! contains(github.ref, '-'))
+      run: |
+        $TAG_NAME = ($env:GITHUB_REF).Substring("refs/tags/".Length)
+        echo "::set-env name=TAG_NAME::$TAG_NAME"
+    - name: Create a Release 
+      id: create_release       
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      uses: actions/create-release@master
+      if: (! contains(github.ref, '-'))
+      with:
+        tag_name: "${{ env.TAG_NAME }}"
+        release_name: "${{ env.TAG_NAME }}"
+        body: "${{ format('See [StanleyGoldman/GitHubActionsMSBuildLogger - {0}](https://github.com/StanleyGoldman/GitHubActionsMSBuildLogger/releases/tag/{0})', env.TAG_NAME) }}"

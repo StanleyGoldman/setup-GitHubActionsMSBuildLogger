@@ -26,8 +26,8 @@ jobs:
         $MAJOR_INDEX = $env:TAG_NAME.IndexOf(".")
         $MINOR_INDEX = $env:TAG_NAME.IndexOf(".", $MAJOR_INDEX + 1)
         
-        $MAJOR = $env:TAG_NAME.Substring($MAJOR_INDEX)
-        $MINOR = $env:TAG_NAME.Substring($MINOR_INDEX)
+        $MAJOR = $env:TAG_NAME.Substring(0, $MAJOR_INDEX)
+        $MINOR = $env:TAG_NAME.Substring(0, $MINOR_INDEX)
         
         git tag -f $MAJOR
         git tag -f $MINOR

@@ -16,12 +16,12 @@ jobs:
         $DOT_COUNT = ($TAG_NAME.ToCharArray() | Where-Object {$_ -eq '.'} | Measure-Object).Count
         echo "::set-env name=DOT_COUNT::$DOT_COUNT"
     - name: Checkout commit
-      if: (env.DOT_COUNT == 3)
+      if: (env.DOT_COUNT == 2)
       uses: actions/checkout@v2-beta
       with:
         token: ${{ secrets.GH_TOKEN }}
     - name: Move Application Tags
-      if: (env.DOT_COUNT == 3)
+      if: (env.DOT_COUNT == 2)
       run: |
         $MAJOR_INDEX = $env:TAG_NAME.IndexOf(".")
         $MINOR_INDEX = $env:TAG_NAME.IndexOf(".", $MAJOR_INDEX + 1)
@@ -37,7 +37,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       uses: actions/create-release@master
-      if: (env.DOT_COUNT == 3 && !contains(github.ref, '-') )
+      if: (env.DOT_COUNT == 2 && !contains(github.ref, '-') )
       with:
         tag_name: "${{ env.TAG_NAME }}"
         release_name: "${{ env.TAG_NAME }}"

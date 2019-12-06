@@ -33,7 +33,6 @@ jobs:
         git tag -f $MINOR
         git push -f --tags
     - name: Create a Release 
-      id: create_release       
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       uses: actions/create-release@master
@@ -42,3 +41,11 @@ jobs:
         tag_name: "${{ env.TAG_NAME }}"
         release_name: "${{ env.TAG_NAME }}"
         body: "${{ format('See [StanleyGoldman/GitHubActionsMSBuildLogger - {0}](https://github.com/StanleyGoldman/GitHubActionsMSBuildLogger/releases/tag/{0})', env.TAG_NAME) }}"
+    - name: Create Point Release 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      uses: actions/create-release@master
+      if: (env.DOT_COUNT == 2 && contains(github.ref, '-') )
+      with:
+        tag_name: "${{ env.TAG_NAME }}"
+        release_name: "${{ env.TAG_NAME }}"
